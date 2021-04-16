@@ -6,51 +6,61 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <TextView
-        android:id="@+id/viewCarbsMax"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="1dp"
-        android:text="185g"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBarCarbs"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/progressBarCarbs"
-        app:layout_constraintTop_toTopOf="@+id/progressBarCarbs" />
-
-    <TextView
-        android:id="@+id/viewFatMax"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="38dp"
-        android:text="62g"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBarFat"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/progressBarFat"
-        app:layout_constraintTop_toTopOf="@+id/progressBarFat" />
-
     <ProgressBar
         android:id="@+id/progressBarFat"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="69dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="54dp"
+        android:layout_width="274dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="1dp"
         android:max="62"
         android:progress="0"
-        app:layout_constraintBottom_toTopOf="@+id/inputBarcode"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/viewFatMax"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <ProgressBar
+        android:id="@+id/progressBarProtein"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="274dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="2dp"
+        android:indeterminate="false"
+        android:max="139"
+        android:progress="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/viewProteinProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="1dp"
+        android:text="0g"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBarProtein"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/progressBarProtein"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/viewFatProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="2dp"
+        android:text="0g"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBarFat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/progressBarFat"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
         android:text="Fat"
-        app:layout_constraintBottom_toTopOf="@+id/progressBarFat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBarCarbs" />
@@ -58,78 +68,102 @@
     <ProgressBar
         android:id="@+id/progressBarCarbs"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="69dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="274dp"
+        android:layout_height="20dp"
         android:max="185"
         android:progress="0"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/viewCarbsMax"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/viewCarbsProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="2dp"
+        android:text="0g"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBarCarbs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/progressBarCarbs"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:text="Carbohydrates"
-        app:layout_constraintBottom_toTopOf="@+id/progressBarCarbs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBarProtein" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/viewProteinMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="27dp"
-        android:text="Macronutrients"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="1dp"
+        android:text="135g"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBarProtein"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/progressBarProtein"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <ProgressBar
-        android:id="@+id/progressBarProtein"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="69dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="13dp"
-        android:indeterminate="false"
-        android:max="139"
-        android:progress="0"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
+    <TextView
+        android:id="@+id/viewFatMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="1dp"
+        android:text="62g"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBarFat"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/viewProteinMax"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toTopOf="@+id/progressBarFat"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
         android:text="Protein"
-        app:layout_constraintBottom_toTopOf="@+id/progressBarProtein"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBarCals" />
+
+    <TextView
+        android:id="@+id/viewCarbsMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="1dp"
+        android:text="185g"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBarCarbs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/progressBarCarbs"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Macronutrients"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/inputBarcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
+        android:layout_marginTop="6dp"
         android:ems="10"
         android:hint="Enter a barcode"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/barcodeSubmitButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBarFat" />
@@ -138,10 +172,9 @@
         android:id="@+id/barcodeSubmitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="324dp"
+        android:layout_marginTop="15dp"
         android:onClick="barcodeSubmit"
         android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputBarcode" />
@@ -150,56 +183,75 @@
         android:id="@+id/viewBarcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="21dp"
         android:text=" "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barcodeSubmitButton" />
 
-    <TextView
-        android:id="@+id/viewProteinMax"
+    <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="30dp"
-        android:text="135g"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBarProtein"
+        android:layout_marginBottom="72dp"
+        android:text="Reset Macros"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/progressBarProtein"
-        app:layout_constraintTop_toTopOf="@+id/progressBarProtein" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/viewProteinProgress"
+    <Button
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="1dp"
-        android:text="0g"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBarProtein"
-        app:layout_constraintEnd_toStartOf="@+id/progressBarProtein"
-        app:layout_constraintTop_toTopOf="@+id/progressBarProtein" />
+        android:layout_marginBottom="80dp"
+        android:text="Enter manually"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewBarcode"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ProgressBar
+        android:id="@+id/progressBarCals"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="275dp"
+        android:layout_height="19dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
-        android:id="@+id/viewCarbsProgress"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="1dp"
-        android:text="0g"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBarCarbs"
-        app:layout_constraintEnd_toStartOf="@+id/progressBarCarbs"
-        app:layout_constraintTop_toTopOf="@+id/progressBarCarbs" />
+        android:layout_marginTop="12dp"
+        android:text="Calories"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
-        android:id="@+id/viewFatProgress"
+        android:id="@+id/viewCalsProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="9dp"
+        android:layout_marginStart="52dp"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBarCals"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/progressBarCals"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/viewCalsMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
         android:layout_marginBottom="1dp"
-        android:text="0g"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBarFat"
-        app:layout_constraintEnd_toStartOf="@+id/progressBarFat"
-        app:layout_constraintTop_toTopOf="@+id/progressBarFat" />
+        android:text="1890"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBarCals"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/progressBarCals"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

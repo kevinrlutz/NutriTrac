@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "594176445531",
+    "project_id": "nutritrac",
+    "storage_bucket": "nutritrac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594176445531:android:cf43f3fa3c6967e927037e",
+        "android_client_info": {
+          "package_name": "me.kevinlutz.nutritrac"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "594176445531-680hceqr3f211fq9uogh76a7i60c6oin.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADxl06HKPme-Jt-PyoA3dan2UDtJRWziU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "594176445531-680hceqr3f211fq9uogh76a7i60c6oin.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
