@@ -196,22 +196,24 @@
         app:layout_constraintTop_toBottomOf="@+id/barcodeSubmitButton" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/resetMacrosButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="72dp"
+        android:onClick="resetMacros"
         android:text="Reset Macros"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/changeGoalsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
-        android:text="Enter manually"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:onClick="changeMacros"
+        android:text="Change Goals"
+        app:layout_constraintBottom_toTopOf="@+id/resetMacrosButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"

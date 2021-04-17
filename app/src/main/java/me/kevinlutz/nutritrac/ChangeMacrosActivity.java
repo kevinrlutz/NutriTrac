@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,29 +46,43 @@ public class ChangeMacrosActivity extends AppCompatActivity {
         fatMax = findViewById(R.id.inputFatGoal);
     }
 
+    private class Update extends AsyncTask<Void, Void, Void> {
+
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            calsMaxVal = Integer.parseInt(calsMax.getText().toString());
+            proteinMaxVal = Integer.parseInt(proteinMax.getText().toString());
+            carbsMaxVal = Integer.parseInt(carbsMax.getText().toString());
+            fatMaxVal = Integer.parseInt(fatMax.getText().toString());
+            updateDatabase();
+        }
+    }
+
     public void submitGoals(View view) {
-        calsMaxVal = Integer.parseInt(calsMax.getText().toString());
-        proteinMaxVal = Integer.parseInt(proteinMax.getText().toString());
-        carbsMaxVal = Integer.parseInt(carbsMax.getText().toString());
-        fatMaxVal = Integer.parseInt(fatMax.getText().toString());
+        Update updateDb = new Update();
+        updateDb.execute();
 
-        Log.d(TAG, String.valueOf(proteinMaxVal));
-
-        updateDatabase();
-
+        Log.d(TAG, "finished updateDatabase()");
         startActivity(new Intent(ChangeMacrosActivity.this, MainActivity.class));
     }
 
-
-    public void updateDatabase() {
+    void updateDatabase() {
         Map<String, Object> goals = new HashMap<>();
         goals.put("proteinMax", proteinMaxVal);
         goals.put("calsMax", calsMaxVal);
         goals.put("carbsMax", carbsMaxVal);
         goals.put("fatMax", fatMaxVal);
 
-        Log.d(TAG, String.valueOf(proteinMaxVal));
+        Log.d(TAG, goals.toString());
 
-        db.collection("users").document(LoginActivity.activeEmail).set(goals, SetOptions.merge());
+        db.collection("users").document(LoginActivity.activeEmail).update(goals);
+        Log.d(TAG, "end of updateDatabase()");
     }
 }

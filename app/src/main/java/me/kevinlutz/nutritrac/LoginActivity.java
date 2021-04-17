@@ -95,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Log.d(TAG, "DocumentSnapshot successfully written!");
+                                        activeEmail = inputEmail.getText().toString();
                                         startActivity(new Intent(LoginActivity.this, ChangeMacrosActivity.class));
                                     }
                                 })

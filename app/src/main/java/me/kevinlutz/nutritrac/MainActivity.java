@@ -1,5 +1,6 @@
 package me.kevinlutz.nutritrac;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -139,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
             super.onPreExecute();
         }
 
+        @SuppressLint("WrongThread")
         @Override
         protected Void doInBackground(Void... voids) {
             try {
@@ -199,12 +201,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateDatabase() {
-        Log.d(TAG, "made it here");
         Map<String, Object> progress = new HashMap<>();
         progress.put("calsProgress", progressBarCals.getProgress());
         progress.put("proteinProgress", progressBarProtein.getProgress());
         progress.put("carbsProgress", progressBarCarbs.getProgress());
         progress.put("fatProgress", progressBarFat.getProgress());
+
+        db.collection("users").document(LoginActivity.activeEmail).update(progress);
+    }
+
+    public void changeMacros(View view) {
+        startActivity(new Intent(MainActivity.this, ChangeMacrosActivity.class));
+    }
+
+    public void resetMacros(View view) {
+        Map<String, Object> progress = new HashMap<>();
+        progress.put("calsProgress", 0);
+        progress.put("proteinProgress", 0);
+        progress.put("carbsProgress", 0);
+        progress.put("fatProgress", 0);
+
+        progressBarCals.setProgress(0);
+        progressBarProtein.setProgress(0);
+        progressBarCarbs.setProgress(0);
+        progressBarFat.setProgress(0);
+
+        viewCalsProgress.setText("0");
+        viewProteinProgress.setText("0g");
+        viewCarbsProgress.setText("0g");
+        viewFatProgress.setText("0g");
 
         db.collection("users").document(LoginActivity.activeEmail).update(progress);
     }
