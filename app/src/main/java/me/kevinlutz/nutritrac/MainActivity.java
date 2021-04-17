@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -57,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         inputBarcode = findViewById(R.id.inputBarcode);
         viewBarcode = findViewById(R.id.viewBarcode);
@@ -75,11 +75,18 @@ public class MainActivity extends AppCompatActivity {
         viewFatMax = findViewById(R.id.viewFatMax);
         viewCalsProgress = findViewById(R.id.viewCalsProgress);
 
+
+
         db.collection("users").document(LoginActivity.activeEmail).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
+                    progressBarProtein.setMax(Integer.parseInt(document.get("proteinMax").toString()));
+                    progressBarCals.setMax(Integer.parseInt(document.get("calsMax").toString()));
+                    progressBarCarbs.setMax(Integer.parseInt(document.get("carbsMax").toString()));
+                    progressBarFat.setMax(Integer.parseInt(document.get("fatMax").toString()));
+
                     viewProteinProgress.setText(document.get("proteinProgress").toString() + "g");
                     viewCarbsProgress.setText(document.get("carbsProgress").toString() + "g");
                     viewFatProgress.setText(document.get("fatProgress").toString() + "g");
@@ -88,6 +95,11 @@ public class MainActivity extends AppCompatActivity {
                     viewCalsMax.setText(document.get("calsMax").toString());
                     viewCarbsMax.setText(document.get("carbsMax").toString() + "g");
                     viewFatMax.setText(document.get("fatMax").toString() + "g");
+
+                    progressBarCals.setProgress(Integer.parseInt(document.get("calsProgress").toString()));
+                    progressBarProtein.setProgress(Integer.parseInt(document.get("proteinProgress").toString()));
+                    progressBarCarbs.setProgress(Integer.parseInt(document.get("carbsProgress").toString()));
+                    progressBarFat.setProgress(Integer.parseInt(document.get("fatProgress").toString()));
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
 
@@ -150,13 +162,9 @@ public class MainActivity extends AppCompatActivity {
 
                     productName = doc.body().getElementsByAttributeValue("property", "food:name").text();
 
-                    Map<String, Object> progress = new HashMap<>();
-                    progress.put("proteinProgress", progressBarProtein.getProgress());
-                    progress.put("calsProgress", progressBarCals.getProgress());
-                    progress.put("carbsProgress", progressBarCarbs.getProgress());
-                    progress.put("fatProgress", progressBarFat.getProgress());
 
-                    db.collection("users").document(LoginActivity.activeEmail).update(progress);
+
+
                 } catch (org.jsoup.HttpStatusException e) {
                     System.out.println(e.getStatusCode());
                     error = true;
@@ -177,6 +185,8 @@ public class MainActivity extends AppCompatActivity {
                 viewProteinProgress.setText(progressBarProtein.getProgress() + "g");
                 viewCarbsProgress.setText(progressBarCarbs.getProgress() + "g");
                 viewFatProgress.setText(progressBarFat.getProgress() + "g");
+                viewCalsProgress.setText(String.valueOf(progressBarCals.getProgress()));
+                updateDatabase();
             } else {
                 viewBarcode.setText("Error in Barcode");
             }
@@ -186,5 +196,16 @@ public class MainActivity extends AppCompatActivity {
     public void barcodeSubmit(View view) {
         Content content = new Content();
         content.execute();
+    }
+
+    public void updateDatabase() {
+        Log.d(TAG, "made it here");
+        Map<String, Object> progress = new HashMap<>();
+        progress.put("calsProgress", progressBarCals.getProgress());
+        progress.put("proteinProgress", progressBarProtein.getProgress());
+        progress.put("carbsProgress", progressBarCarbs.getProgress());
+        progress.put("fatProgress", progressBarFat.getProgress());
+
+        db.collection("users").document(LoginActivity.activeEmail).update(progress);
     }
 }

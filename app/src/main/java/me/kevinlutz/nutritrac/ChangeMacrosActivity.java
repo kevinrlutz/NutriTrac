@@ -14,8 +14,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -30,6 +32,8 @@ public class ChangeMacrosActivity extends AppCompatActivity {
     private EditText carbsMax;
     private EditText fatMax;
 
+    private int proteinMaxVal, calsMaxVal, carbsMaxVal, fatMaxVal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +46,28 @@ public class ChangeMacrosActivity extends AppCompatActivity {
     }
 
     public void submitGoals(View view) {
-        Map<String, Object> goals = new HashMap<>();
-        goals.put("proteinMax", Integer.parseInt(proteinMax.getText().toString()));
-        goals.put("calsMax", Integer.parseInt(calsMax.getText().toString()));
-        goals.put("carbsMax", Integer.parseInt(carbsMax.getText().toString()));
-        goals.put("fatMax", Integer.parseInt(fatMax.getText().toString()));
+        calsMaxVal = Integer.parseInt(calsMax.getText().toString());
+        proteinMaxVal = Integer.parseInt(proteinMax.getText().toString());
+        carbsMaxVal = Integer.parseInt(carbsMax.getText().toString());
+        fatMaxVal = Integer.parseInt(fatMax.getText().toString());
 
-        db.collection("users").document(LoginActivity.activeEmail).update(goals);
+        Log.d(TAG, String.valueOf(proteinMaxVal));
+
+        updateDatabase();
 
         startActivity(new Intent(ChangeMacrosActivity.this, MainActivity.class));
+    }
+
+
+    public void updateDatabase() {
+        Map<String, Object> goals = new HashMap<>();
+        goals.put("proteinMax", proteinMaxVal);
+        goals.put("calsMax", calsMaxVal);
+        goals.put("carbsMax", carbsMaxVal);
+        goals.put("fatMax", fatMaxVal);
+
+        Log.d(TAG, String.valueOf(proteinMaxVal));
+
+        db.collection("users").document(LoginActivity.activeEmail).set(goals, SetOptions.merge());
     }
 }

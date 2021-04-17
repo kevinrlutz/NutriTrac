@@ -79,10 +79,6 @@ public class LoginActivity extends AppCompatActivity {
         user.put("carbsProgress", 0);
         user.put("fatProgress", 0);
         user.put("calsProgress", 0);
-        user.put("calsMax", 1);
-        user.put("proteinMax", 1);
-        user.put("carbsMax", 1);
-        user.put("fatMax", 1);
 
         db.collection("users").document(inputEmail.getText().toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
