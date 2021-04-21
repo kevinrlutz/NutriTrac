@@ -162,23 +162,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/inputBarcode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:ems="10"
-        android:hint="Enter a barcode"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBarFat" />
-
     <Button
         android:id="@+id/barcodeSubmitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_width="207dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="14dp"
         android:onClick="barcodeSubmit"
         android:text="Submit"
         app:layout_constraintEnd_toEndOf="parent"
@@ -189,36 +177,47 @@
         android:id="@+id/viewBarcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="22dp"
         android:text=" "
+        app:layout_constraintBottom_toTopOf="@+id/enterManualButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barcodeSubmitButton" />
 
-    <Button
-        android:id="@+id/resetMacrosButton"
+    <EditText
+        android:id="@+id/inputBarcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Enter a barcode"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarFat" />
+
+    <Button
+        android:id="@+id/resetMacrosButton"
+        android:layout_width="138dp"
+        android:layout_height="63dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="36dp"
         android:onClick="resetMacros"
         android:text="Reset Macros"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/changeGoalsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_width="138dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="36dp"
         android:onClick="changeMacros"
         android:text="Change Goals"
-        app:layout_constraintBottom_toTopOf="@+id/resetMacrosButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewBarcode"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBarCals"
@@ -265,5 +264,16 @@
         app:layout_constraintStart_toEndOf="@+id/progressBarCals"
         app:layout_constraintTop_toTopOf="@+id/progressBarCals"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/enterManualButton"
+        android:layout_width="164dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="188dp"
+        android:onClick="enterManual"
+        android:text="Enter Manually"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,32 +7,6 @@
     tools:context=".ChangeMacrosActivity">
 
     <EditText
-        android:id="@+id/inputCalGoal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginBottom="18dp"
-        android:ems="10"
-        android:hint="Calorie Goal (kCal)"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/inputProteinGoal"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="79dp"
-        android:layout_marginBottom="7dp"
-        android:text="Set Nutrition Goals"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintBottom_toTopOf="@+id/inputCalGoal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
         android:id="@+id/inputProteinGoal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,7 +22,7 @@
         android:id="@+id/inputFatGoal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="21dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="Fat Goal (grams)"
         android:inputType="number"
@@ -57,27 +31,52 @@
         app:layout_constraintTop_toBottomOf="@+id/inputCarbGoal" />
 
     <EditText
+        android:id="@+id/inputCalGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginBottom="11dp"
+        android:ems="10"
+        android:hint="Calorie Goal (kCal)"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/inputProteinGoal"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="149dp"
+        android:layout_marginBottom="15dp"
+        android:text="Set Nutrition Goals"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toTopOf="@+id/inputCalGoal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/submitGoalsButton"
+        android:layout_width="210dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:onClick="submitGoals"
+        android:text="Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputFatGoal" />
+
+    <EditText
         android:id="@+id/inputCarbGoal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="Carb Goal (grams)"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/inputFatGoal"
         app:layout_constraintStart_toStartOf="@+id/inputProteinGoal"
         app:layout_constraintTop_toBottomOf="@+id/inputProteinGoal" />
-
-    <Button
-        android:id="@+id/submitGoalsButton"
-        android:layout_width="210dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="307dp"
-        android:onClick="submitGoals"
-        android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputFatGoal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

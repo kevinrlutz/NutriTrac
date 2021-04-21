@@ -27,12 +27,11 @@ import java.util.Map;
 import kotlinx.coroutines.MainCoroutineDispatcher;
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText inputEmail;
-    private EditText inputPassword;
+
+    private EditText inputEmail, inputPassword;
     private static final String TAG = "LoginActivity";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     public static String activeEmail = "";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         if (document.get("password").equals(inputPassword.getText().toString())) {
-                            Log.d(TAG, "login correct!");
                             activeEmail = inputEmail.getText().toString();
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         } else {
@@ -64,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
-
                 }
             }
         });

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EnterManualActivity">
+
+    <EditText
+        android:id="@+id/inputCarbs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:ems="10"
+        android:hint="Carbohydrates (grams)"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/inputFat"
+        app:layout_constraintStart_toStartOf="@+id/inputProtein"
+        app:layout_constraintTop_toBottomOf="@+id/inputProtein" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="147dp"
+        android:layout_marginBottom="21dp"
+        android:text="Enter Macros Manually"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toTopOf="@+id/inputCals"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/inputProtein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:ems="10"
+        android:hint="Protein (grams)"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/inputCarbs"
+        app:layout_constraintStart_toStartOf="@+id/inputCals"
+        app:layout_constraintTop_toBottomOf="@+id/inputCals" />
+
+    <EditText
+        android:id="@+id/inputCals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:ems="10"
+        android:hint="Calories (kCal)"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/inputProtein"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <Button
+        android:id="@+id/submitMacrosButton"
+        android:layout_width="210dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:onClick="onSubmit"
+        android:text="Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputFat" />
+
+    <EditText
+        android:id="@+id/inputFat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:ems="10"
+        android:hint="Fat (grams)"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/submitMacrosButton"
+        app:layout_constraintStart_toStartOf="@+id/inputCarbs"
+        app:layout_constraintTop_toBottomOf="@+id/inputCarbs" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

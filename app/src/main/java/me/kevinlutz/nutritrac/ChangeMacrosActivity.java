@@ -25,14 +25,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ChangeMacrosActivity extends AppCompatActivity {
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static final String TAG = "ChangeMacrosActivity";
 
-    private EditText proteinMax;
-    private EditText calsMax;
-    private EditText carbsMax;
-    private EditText fatMax;
-
+    private EditText proteinMax, calsMax, carbsMax, fatMax;
     private int proteinMaxVal, calsMaxVal, carbsMaxVal, fatMaxVal;
 
     @Override
@@ -47,8 +44,6 @@ public class ChangeMacrosActivity extends AppCompatActivity {
     }
 
     private class Update extends AsyncTask<Void, Void, Void> {
-
-
         @Override
         protected Void doInBackground(Void... voids) {
 

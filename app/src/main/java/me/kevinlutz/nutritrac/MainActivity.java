@@ -40,21 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private EditText inputBarcode;
-    private TextView viewBarcode;
-    private TextView viewProteinProgress;
-    private TextView viewCarbsProgress;
-    private TextView viewFatProgress;
-    private ProgressBar progressBarProtein;
-    private ProgressBar progressBarCarbs;
-    private ProgressBar progressBarFat;
-    private ProgressBar progressBarCals;
-    private TextView viewCalsProgress;
-    private TextView viewCalsMax;
-    private TextView viewProteinMax;
-    private TextView viewCarbsMax;
-    private TextView viewFatMax;
+    private TextView viewBarcode, viewProteinProgress, viewCarbsProgress, viewFatProgress;
+    private ProgressBar progressBarProtein, progressBarCarbs, progressBarFat, progressBarCals;
+    private TextView viewCalsProgress, viewCalsMax, viewProteinMax, viewCarbsMax, viewFatMax;
     private static final String TAG = "MainActivity";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
         viewCarbsMax = findViewById(R.id.viewCarbsMax);
         viewFatMax = findViewById(R.id.viewFatMax);
         viewCalsProgress = findViewById(R.id.viewCalsProgress);
-
-
 
         db.collection("users").document(LoginActivity.activeEmail).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -144,9 +131,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-
                 String page = "https://world.openfoodfacts.org/product/" + barcode;
-
                 try {
                     Document doc = Jsoup.connect(page).get();
 
@@ -163,16 +148,10 @@ public class MainActivity extends AppCompatActivity {
                     progressBarCals.incrementProgressBy(Integer.parseInt(String.valueOf(Math.round(Float.parseFloat(calsVal)))));
 
                     productName = doc.body().getElementsByAttributeValue("property", "food:name").text();
-
-
-
-
                 } catch (org.jsoup.HttpStatusException e) {
                     System.out.println(e.getStatusCode());
                     error = true;
                 }
-
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -195,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
     public void barcodeSubmit(View view) {
         Content content = new Content();
         content.execute();
@@ -212,6 +192,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeMacros(View view) {
         startActivity(new Intent(MainActivity.this, ChangeMacrosActivity.class));
+    }
+
+    public void enterManual(View view) {
+        startActivity(new Intent(MainActivity.this, EnterManualActivity.class));
     }
 
     public void resetMacros(View view) {
