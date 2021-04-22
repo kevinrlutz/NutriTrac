@@ -61,11 +61,14 @@ public class ChangeMacrosActivity extends AppCompatActivity {
     }
 
     public void submitGoals(View view) {
-        Update updateDb = new Update();
-        updateDb.execute();
+        if (!(calsMax.getText().toString().equals("") || proteinMax.getText().toString().equals("") || carbsMax.getText().toString().equals("") || fatMax.getText().toString().equals(""))) {
+            Update updateDb = new Update();
+            updateDb.execute();
 
-        Log.d(TAG, "finished updateDatabase()");
-        startActivity(new Intent(ChangeMacrosActivity.this, MainActivity.class));
+            startActivity(new Intent(ChangeMacrosActivity.this, MainActivity.class));
+        } else {
+            Toast.makeText(this, "Please enter all data", Toast.LENGTH_SHORT).show();
+        }
     }
 
     void updateDatabase() {

@@ -43,70 +43,76 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginSubmit(View view) throws IOException {
-        DocumentReference docRef = db.collection("users").document(inputEmail.getText().toString());
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        if (document.get("password").equals(inputPassword.getText().toString())) {
-                            activeEmail = inputEmail.getText().toString();
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        if (inputEmail.getText().toString().equals("") || inputPassword.getText().toString().equals("")) {
+            Toast.makeText(this, "Please enter an email and password", Toast.LENGTH_SHORT).show();
+        } else {
+            DocumentReference docRef = db.collection("users").document(inputEmail.getText().toString());
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            if (document.get("password").equals(inputPassword.getText().toString())) {
+                                activeEmail = inputEmail.getText().toString();
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Password incorrect", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast incorrectPass = Toast.makeText(getApplicationContext(), "Password incorrect", Toast.LENGTH_SHORT);
-                            incorrectPass.show();
+                            Log.d(TAG, "No such document");
                         }
                     } else {
-                        Log.d(TAG, "No such document");
+                        Log.d(TAG, "get failed with ", task.getException());
                     }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
                 }
-            }
-        });
-
+            });
+        }
     }
 
     public void registerSubmit(View view) throws IOException {
-        Map<String, Object> user = new HashMap<>();
-        user.put("email", inputEmail.getText().toString());
-        user.put("password", inputPassword.getText().toString());
-        user.put("proteinProgress", 0);
-        user.put("carbsProgress", 0);
-        user.put("fatProgress", 0);
-        user.put("calsProgress", 0);
+        if (inputEmail.getText().toString().equals("") || inputPassword.getText().toString().equals("")) {
+            Toast.makeText(this, "Please enter an email and password", Toast.LENGTH_SHORT).show();
+        } else {
+            Map<String, Object> user = new HashMap<>();
+            user.put("email", inputEmail.getText().toString());
+            user.put("password", inputPassword.getText().toString());
+            user.put("proteinProgress", 0);
+            user.put("carbsProgress", 0);
+            user.put("fatProgress", 0);
+            user.put("calsProgress", 0);
 
-        db.collection("users").document(inputEmail.getText().toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                        Toast.makeText(LoginActivity.this, "User already exists", Toast.LENGTH_SHORT).show();
+            db.collection("users").document(inputEmail.getText().toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                            Toast.makeText(LoginActivity.this, "User already exists", Toast.LENGTH_SHORT).show();
+                        } else {
+                            db.collection("users").document(inputEmail.getText().toString())
+                                    .set(user)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "DocumentSnapshot successfully written!");
+                                            activeEmail = inputEmail.getText().toString();
+                                            startActivity(new Intent(LoginActivity.this, ChangeMacrosActivity.class));
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error writing document", e);
+                                        }
+                                    });
+                        }
                     } else {
-                        db.collection("users").document(inputEmail.getText().toString())
-                                .set(user)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                                        activeEmail = inputEmail.getText().toString();
-                                        startActivity(new Intent(LoginActivity.this, ChangeMacrosActivity.class));
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.w(TAG, "Error writing document", e);
-                                    }
-                                });
+                        Log.d(TAG, "get failed with ", task.getException());
                     }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
                 }
-            }
-        });
+            });
+        }
     }
 }
